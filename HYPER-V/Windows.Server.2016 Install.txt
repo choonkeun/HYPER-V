@@ -1,0 +1,42 @@
+
+---------------------------------------------------
+Windows.Server.2016.DataCenter.Desktop Experience :
+---------------------------------------------------
+-IIS
+-stickies_setup_7.1e.exe
+-Admin DOS: runasroot.reg
+-자동로그인: control userpasswords2
+-gpedit.msc: 
+    암호복잡성 해제 (Windows > Security Setting > Account Policy > Password must meet ...)
+    로그인 시 Alt+Ctrl+Del 해제 (Windows > Security Setting > Local Policy > Security Option > Do not require ...)
+    종료이벤트 추적 해제 (Admin Template > System > Display Shutdown Event Tracker)
+-zone_x64.reg: IE SEC 보안 해제
+
+-----------------------------------------
+1. Disk Partition - Create C-Drive as 100 GB
+2. Change Administrator to Admin & Reboot
+3. Change Host Name to WIN2016
+4. gpedit.msc & Reboot
+5. Language & Region > Add lang : Korean & Reboot
+6. Folder Organize > View Option
+7. Select All IIS Options & Reboot
+8. System > Allow all Remote Desktop Connection
+9. Add Features
+    - Dot Net 3.5
+    - Desktop Experience
+    - Quality Windows Audio Service
+    - Telnet Client & Server
+-----------------------------------------
+
+gpedit.msc
+
+Computer Configuration > Windows Setting > Security Setting > Account Policies > Password policy
+> Password must meet complexity requirements -- disabled
+
+
+https://youtu.be/K_iYA98RpSI
+Open PowerShell
+1. Get-WindowsFeature *Wireless*
+2. Install-WindowsFeature -Name Wireless-Networking
+3. Restart-Computer
+4. Net Start WLanSvc
